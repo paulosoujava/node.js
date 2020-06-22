@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('./partials/header') %>
+
+  <body>
+    <%- include ('./partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <h1><%= pergunta.titulo %></h1>
+          <small><%= pergunta.descricao %></small>
+        </div>
+        <div class="card-body">
+          <form action="/responder" method="POST">
+            <h3>Responder</h3>
+            <textarea
+              placeholder="digite sua resposta"
+              class="form-control"
+              name="corpo"
+            ></textarea>
+            <br />
+            <input type="hidden" name="perguntaId" value="<%=pergunta.id%>" />
+            <button type="submit" class="btn btn-success">Responder</button>
+          </form>
+        </div>
+      </div>
+      <br />
+      <hr />
+      <h2>Respostas</h2>
+      <% respostas.forEach(r => { %>
+      
+        <div class="card" style="margin-left: 15px;">
+          <blockquote class="blockquote"></blockquote>
+          <div class="card-body">
+            <p class="lead"><%= r.corpo %></p>
+          </div>
+        </blockquote>
+        </div>
+      
+      <br />
+      <%})%>
+    </div>
+  </body>
+  <%- include ('./partials/footer') %>
+</html>

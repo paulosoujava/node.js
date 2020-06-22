@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('partials/header') %>
+  <body>
+    <%- include ('partials/navbar') %>
+  
+  <body>
+    
+    
+<div class="container">
+  <br />
+  <center>
+    <h2>BLOG </h2>
+  
+  </center>
+  <hr />
+  <h3>Categorias</h3>
+  <% cat.forEach(c => {%> 
+    <a href="blog/admin/articles/category/<%= c.slug %>" class="btn btn-outline-success my-2 my-sm-0">
+      <%= c.title %> 
+  </a>
+    
+    <%}); %> 
+    <hr />
+  <div class="container">
+    <% art.forEach(a => {%>
+      <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h2><%= a.title  %> </h2><br />
+            <span>Categoria:: <% if (a.category == null){%> Indefinida <%}else{%> <%=a.category.title%> <%} %> </span>
+          </div>
+          <div class="card-body">
+          
+            <a href="blog/admin/articles/read/<%= a.slug %> " class="btn btn-primary">ler mais</a>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    <br/><br/>
+    <% });  %> 
+    
+  </div>
+
+    
+
+
+  </body>
+  <%- include ('partials/footer') %>
+</html>

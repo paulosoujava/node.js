@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../../partials/header') %>
+  <body>
+    <%- include ('../../partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <a href="/blog">Voltar</a>
+          <br /><br />
+          <h2><%= art.title %></h2>
+          <span>Categoria:: <%= art.category.title %> </span>
+        </div>
+        <div class="card-body">
+          <%- art.body %>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include ('../../partials/footer') %>
+</html>

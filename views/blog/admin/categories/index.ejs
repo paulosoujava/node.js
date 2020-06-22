@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../../partials/header') %>
+  <body>
+    <%- include ('../../partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <h2>Categorias</h2>
+          <a href="/blog/admin/new" class="btn btn-outline-dark">Criar</a>
+        </div>
+        <div class="card-body">
+          <table class="table table-striped table-dark">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Titulo</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for( c of categories){%>
+              <tr>
+                <th scope="row"><%= c.id %></th>
+                <td><%= c.title %></td>
+                <td><%= c.slug %></td>
+                <td>
+                  <form
+                    action="/blog/admin/delete"
+                    method="POST"
+                    onsubmit="confirmDelete(event, this)"
+                  >
+                    <input type="hidden" name="id" value="<%= c.id %>" />
+                    <button type="submit" class="btn btn-danger">
+                      Deletar
+                    </button>
+                    <a href="categories/edit/<%= c.id %> " class="btn btn-success">Editar</a>
+                  </form>
+                </td>
+              </tr>
+
+              <% } %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include ('../../partials/footer') %>
+  <script>
+    function confirmDelete(event, form) {
+      event.preventDefault();
+      const swalWithBootstrapButtons = Swal.mixin();
+
+      swalWithBootstrapButtons
+        .fire({
+          title: "AVocê tem certeza?",
+          text: "Após deletar não poderei recuperar os dados!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#E22",
+          confirmButtonText: "Sim, deletar!",
+          cancelButtonText: "Não, cancele!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.value) {
+            form.submit();
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Opa os dados estão a salvo. :)",
+              "error"
+            );
+          }
+        });
+    }
+  </script>
+</html>

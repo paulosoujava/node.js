@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../../partials/header') %>
+  <script
+    src="https://cdn.tiny.cloud/1/q58t1lyuwiyudscge4q30edftynwhcakpj8ndm7psf985yin/tinymce/5/tinymce.min.js"
+    referrerpolicy="origin"
+  ></script>
+  <body>
+    <%- include ('../../partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <a href="/blog/admin/articles" class="pull-right">Voltar</a>
+          <hr />
+          <h2>Novo artigo</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="save">
+            <div class="form-group">
+              <label for="select">Selecione a Categoria</label>
+              <select class="form-control" id="select" name="category">
+                <% categories.forEach((c)=> {%>
+                <option value="<%= c.id %>"> <%=c.title %> </option>
+                <%})%>
+              </select>
+            </div>
+            <br />
+            <label for="title">Título </label>
+            <input
+              id="title"
+              type="text"
+              name="title"
+              class="form-control"
+              placeholder="Defina um titulo"
+            />
+            <br />
+            <label for="desc">Seu texto</label>
+            <textarea
+              name="desc"
+              id="desc"
+              placeholder="escreva seu artigo"
+              class="form-control"
+            ></textarea>
+            <br />
+            <button class="btn btn-primary">Criar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include ('../../partials/footer') %>
+  <script src="tinymce/tinymce.min.js"></script>
+  <script>
+    tinymce.init({
+      selector: "#desc",
+      language: "pt_BR",
+      plugins: [
+        "advlist autolink link image lists print preview hr searchreplace wordcount fullscreen insertdatetime media save table paste emoticons",
+      ],
+    });
+  </script>
+</html>

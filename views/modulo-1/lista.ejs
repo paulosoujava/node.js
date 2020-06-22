@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('partials/header') %>
+  <body>
+    <%- include ('partials/navbar') %>
+    <div class="container">
+      <br /><br />
+      <a href="save" class="btn btn-primary">Criar</a>
+      <br /><br />
+
+      <% for( p of perguntas ) {%>
+      <div class="card">
+        <div class="card-body">
+          <h3><%= p.titulo %></h3>
+        </div>
+        <div class="card-footer">
+          <a href="/pergunta?id=<%= p.id %>" class="btn btn-primary"
+            >Responder</a
+          >
+          <a id="del" data="<%= p.id %>" class="btn btn-danger text-white"
+            >deletar</a
+          >
+        </div>
+      </div>
+      <br />
+      <% } %>
+    </div>
+  </body>
+  <%- include ('partials/footer') %>
+  <script>
+    $("#del").click(() => {
+      const ipAPI = "http://localhost:3000/delete?id=" + $("#del").attr("data");
+      const swalWithBootstrapButtons = Swal.mixin();
+
+      swalWithBootstrapButtons
+        .fire({
+          title: "Você tem certeza?",
+          text: "Iremos deletar tudo",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Sim, delete!",
+          cancelButtonText: "Não, cancela!",
+          reverseButtons: true,
+        })
+        .then((result) => {
+          if (result.value) {
+            return fetch(ipAPI)
+              .then((response) => response.json())
+              .then((data) => {
+                location.reload();
+              })
+              .catch(() => {
+                Swal.insertQueueStep({
+                  icon: "error",
+                  title: "Ops, tente mais tarde",
+                });
+              });
+          } else if (
+            /* Read more about handling dismissals below */
+            result.dismiss === Swal.DismissReason.cancel
+          ) {
+            swalWithBootstrapButtons.fire(
+              "Cancelado",
+              "Seus dados estão seguro :)",
+              "error"
+            );
+          }
+        });
+    });
+  </script>
+</html>

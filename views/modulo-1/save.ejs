@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('partials/header') %>
+  <body>
+    <%- include ('partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <h1>Criar perguntas</h1>
+        </div>
+        <div class="card-body">
+          <form method="post" action="/register">
+            <label>Titulo</label>
+            <input name="title" class="form-control" type="text"
+            placeholder="Título" / >
+            <br />
+            <label>Descrição</label>
+            <textarea
+              name="desc"
+              class="form-control"
+              placeholder="Descreva sua perguta"
+            ></textarea>
+            <br />
+            <button class="btn btn-success">Criar</button>
+          </form>
+        </div>
+      </div>
+      <br />
+    </div>
+  </body>
+  <%- include ('partials/footer') %>
+</html>

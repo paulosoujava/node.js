@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../../partials/header') %>
+  <body>
+    <%- include ('../../partials/navbar') %>
+  
+  <body>
+    <br />
+    <div class="container">
+      <center>
+        <h2>Categoria:: <%= art.title %>  </h2>
+        <a href="/blog">Voltar</a>
+      </center>
+        <hr />
+
+        <div class="row">
+          <% art.articles.forEach(a => { %>
+            
+            <div class="col-6">
+              <div class="card" style="width: 28rem;">
+                <div class="card-header">
+                  <h5><%= a.title%>  </h5>
+                </div>
+                <div class="card-body">
+                  <a class="nav-link btn btn-outline-success" href="../read/<%= a.slug %>">ler </a>
+                </div>
+              </div>
+              <br /><br />
+            </div> 
+            
+           <%}); %>
+           <br /><br />
+         </div>        
+    </div>
+    
+    
+  </body>
+  <%- include ('../../partials/footer') %>
+</html>
+

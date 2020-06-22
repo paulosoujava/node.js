@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <%- include ('../../partials/header') %>
+  <body>
+    <%- include ('../../partials/navbar') %>
+    <div class="container">
+      <br />
+      <div class="card">
+        <div class="card-header">
+          <a href="/blog/admin/categories" class="pull-right">Voltar</a>
+          <hr />
+          <h2>Editar Categoria: de Categorias</h2>
+        </div>
+        <div class="card-body">
+          <form method="POST" action="/blog/admin/save">
+            <input
+              type="text"
+              name="title"
+              class="form-control"
+              placeholder="Crie o tipo de categoria"
+            />
+            <br />
+            <button class="btn btn-primary">Criar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+  <%- include ('../../partials/footer') %>
+</html>
